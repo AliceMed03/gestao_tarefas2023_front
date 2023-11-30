@@ -1,13 +1,12 @@
 //import './App.css';
-import { Router } from 'express';
-import cadastrar_tarefa from './components/cadastrar_tarefa';
-import {Routes,Route} from 'react-router-dom';
+import Cadastrar_tarefa from './components/cadastrar_tarefa';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 const App = () => {
   return(  //tudo que vai aqui no return é o que aparece na aplicação
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<cadastrar_tarefa/>}/>
+          <Route exact path="/" Component={Cadastrar_tarefa}/>
         </Routes>
       </Router>
     </>
