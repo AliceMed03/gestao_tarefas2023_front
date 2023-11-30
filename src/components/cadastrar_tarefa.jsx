@@ -6,57 +6,54 @@ import { useState } from "react";
 //register serve para definir os nomes dos campos do form (validações)
 //handleSubmit, para indicar o método a ser acionado no evento onSubmit do form
 //form onSubmit={handleSubmit(salvar)}
-const InclusaoLivros = () => {
+const Cadastrar_tarefa = () => {
     const{ register, handleSubmit } = useForm();
     const [aviso, setAviso] = useState("");
     //método chamado ao enviar form onSubmit
     const salvar = async (campos) => {  
         try {
-                    const response = await api.post("livros", campos);
-                    setAviso(`Livro cadastrado com sucesso!"
+                    const response = await api.post("tarefa", campos);
+                    setAviso(`Tarefa cadastrada com sucesso!"
                     ${response.data.id}`);
                 } catch (error) {
-                    setAviso("Erro ao cadastrar livro!");
+                    setAviso("Erro ao cadastrar a tarefa!");
                 }
     }
-    //JSON.stringify() converte um objeto javascript para uma String JSON 
-    //alert(JSON.stringify(campos));
-    //lá no html puro usavamos titulo.value para pegar valor
     
     //aqui é o que vai ser exibido em tela
     return ( 
         <div className="container">
-            <h4 className="fst-italic mt-3">Inclusão</h4>
+            <h4 className="fst-italic mt-3">Cadastrar Tarefa</h4>
             <form onSubmit={handleSubmit(salvar)}>
                 <div className="form-group">
-                    <label htmlFor="titulo">Titulo</label>
+                    <label htmlFor="titulo">Titulo: </label>
                     <input type="text" className="form-control" id="titulo"
                     required autoFocus {...register("titulo")}/>
                 </div>
                 <div className="form-group mt-2">
-                    <label htmlFor="autor">Autor</label>
-                        <input type="text" className="form-control" id="autor"
-                        required {...register("autor")}/>
+                    <label htmlFor="descricao">Descrição: </label>
+                        <input type="text" className="form-control" id="descricao"
+                        required {...register("descricao")}/>
                 </div>
                 <div className="form-group mt-2">
-                    <label htmlFor="foto">URL da foto:</label>
-                        <input type="url" className="form-control" id="foto"
+                    <label htmlFor="foto">status: </label>
+                        <input type="text" className="form-control" id="foto"
                         required {...register("foto")}/>
                 </div>
                 <div className="row mt-2">
                     <div className="col-sm-4">
                         <div className="form-group">
-                            <label htmlFor="ano">Ano de Publicação</label>
-                            <input type="number" className="form-control"
-                            id="ano" required {...register("ano")}></input>
+                            <label htmlFor="data_criacao">Data de Criação: </label>
+                            <input type="date" className="form-control" id="data_criacao" 
+                            required {...register("ano")}></input>
                         </div>
                     </div>
                 </div>
                 <div className="col-sm-8">
                     <div className="form-group">
-                        <label htmlFor="preco">Preço R$:</label>
-                        <input type="number" className="form-control" 
-                        id="preco" step="0.01" required {...register("preco")}></input>
+                        <label htmlFor="data_limite">Data Limite: </label>
+                        <input type="date" className="form-control" id="data_limite" 
+                        required {...register("preco")}></input>
                     </div>
                 </div>
                 <input type="submit" className="btn btn-primary mt-3"
@@ -69,4 +66,4 @@ const InclusaoLivros = () => {
     )
 }
 
-export default InclusaoLivros;
+export default Cadastrar_tarefa;
