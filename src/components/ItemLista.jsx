@@ -1,4 +1,4 @@
-import "../css/ItemLista.css";
+//import "../css/ItemLista.css";
 //const ItemLista = (props) => { 
 //nocódigo abaixo fiz a desestruturação de props
 const ItemLista = ({id,titulo,descricao,status,data_criacao,data_limite,excluirClick,alterarClick}) => {
