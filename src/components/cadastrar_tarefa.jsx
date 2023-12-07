@@ -40,8 +40,8 @@ const Cadastrar_tarefa = () => {
                         <input type="text" className="form-control" id="status"
                         required {...register("status")}/>
                 </div>
-                <div className="row mt-2">
-                    <div className="col-sm-4">
+                <div>
+                    <div className="col-sm-8">
                         <div className="form-group">
                             <label htmlFor="data_criacao">Data de Criação: </label>
                             <input type="date" className="form-control" id="data_criacao" 

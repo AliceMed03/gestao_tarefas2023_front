@@ -11,7 +11,7 @@ const ManutencaoTarefas = () => {
 
     const obterLista = async () => {
         try{
-            const lista = await api.get("tarefas");
+            const lista = await api.get("tarefa");
             setTarefas(lista.data);
         }catch(error){
             alert(`Erro: ..Não foi possível obter os dados: ${error}`);

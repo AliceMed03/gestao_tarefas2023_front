@@ -2,6 +2,7 @@
 import Cadastrar_tarefa from './components/cadastrar_tarefa';
 import Manutencao_tarefa from './components/manutencao_tarefa';
 import Cadastrar_usuario from './components/cadastrar_usuario';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 const App = () => {
