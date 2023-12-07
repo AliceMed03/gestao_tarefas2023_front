@@ -36,16 +36,16 @@ const Cadastrar_tarefa = () => {
                         required {...register("descricao")}/>
                 </div>
                 <div className="form-group mt-2">
-                    <label htmlFor="foto">status: </label>
-                        <input type="text" className="form-control" id="foto"
-                        required {...register("foto")}/>
+                    <label htmlFor="status">status: </label>
+                        <input type="text" className="form-control" id="status"
+                        required {...register("status")}/>
                 </div>
                 <div className="row mt-2">
                     <div className="col-sm-4">
                         <div className="form-group">
                             <label htmlFor="data_criacao">Data de Criação: </label>
                             <input type="date" className="form-control" id="data_criacao" 
-                            required {...register("ano")}></input>
+                            required {...register("data_criacao")}></input>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Cadastrar_tarefa = () => {
                     <div className="form-group">
                         <label htmlFor="data_limite">Data Limite: </label>
                         <input type="date" className="form-control" id="data_limite" 
-                        required {...register("preco")}></input>
+                        required {...register("data_limite")}></input>
                     </div>
                 </div>
                 <input type="submit" className="btn btn-primary mt-3"
