@@ -10,13 +10,18 @@ const ManutencaoUsuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
 
     const obterLista = async () => {
-        try{
-            const lista = await api.get("usuarios");
-            setUsuarios(lista.data);
-        }catch(error){
-            alert(`Erro: ..Não foi possível obter os dados: ${error}`);
+        try {
+            const lista = await api.get("usuario");
+            if (lista.data && lista.data.usuario) {
+                setTarefas(lista.data.usuario);
+                console.log("Estado atual dos usuários:", usuario);
+            } else {
+                alert("Resposta da API não possui a estrutura esperada.");
+            }
+        } catch (error) {
+            alert(`Erro: Não foi possível obter os dados: ${error}`);
         }
-    }
+    }  
 
 
 //define o método que será executado assim que o componente for renderizado
@@ -26,7 +31,7 @@ useEffect(() => {
 
 const filtrarLista = async (campos) => {
     try{
-        const lista = await api.get(`usuarios/filtro/${campos.palavra}`);
+        const lista = await api.get(`usuario/filtro/${campos.palavra}`);
         lista.data.length
         ? setUsuarios(lista.data)
         : alert("Não há usuarios cadastrados com a palavra chave pesquisada");
@@ -118,4 +123,4 @@ const alterar = async (id,senha,index) => {
     );
 };
 
-export default ManutencaoTarefas;
+export default ManutencaoUsuarios;

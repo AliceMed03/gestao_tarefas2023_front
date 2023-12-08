@@ -10,14 +10,18 @@ const ManutencaoTarefas = () => {
     const [tarefas, setTarefas] = useState([]);
 
     const obterLista = async () => {
-        try{
+        try {
             const lista = await api.get("tarefa");
-            setTarefas(lista.data);
-        }catch(error){
-            alert(`Erro: ..Não foi possível obter os dados: ${error}`);
+            if (lista.data && lista.data.tarefas) {
+                setTarefas(lista.data.tarefas);
+                console.log("Estado atual de tarefas:", tarefas);
+            } else {
+                alert("Resposta da API não possui a estrutura esperada.");
+            }
+        } catch (error) {
+            alert(`Erro: Não foi possível obter os dados: ${error}`);
         }
-    }
-
+    }      
 
 //define o método que será executado assim que o componente for renderizado
 useEffect(() => {
@@ -25,13 +29,23 @@ useEffect(() => {
 },[]);
 
 const filtrarLista = async (campos) => {
-    try{
-        const lista = await api.get(`tarefas/filtro/${campos.palavra}`);
-        lista.data.length
-        ? setTarefas(lista.data)
-        : alert("Não há tarefas cadastradas com a palavra chave pesquisada");
-    }catch(error){
-        alert(`Erro: ..Não foi possível obter os dados: ${error}`);
+    try {
+        const response = await api.get(`tarefa/filtro/${campos.palavra}`);
+        if (response.status === 200) {
+            const lista = response.data;
+            
+            if (lista.success) {
+                setTarefas(lista.tarefa);
+            } else {
+                alert("Não há tarefas cadastradas com a palavra chave pesquisada");
+            }
+         } else {
+          alert(`Erro na solicitação: ${response.statusText}`);
+         }
+       
+    } catch (error) {
+        
+        alert("Não há tarefas cadastradas com a palavra chave pesquisada");
     }
 }
 
@@ -40,9 +54,9 @@ const excluir = async(id,titulo) => {
         return;
     }
     try{
-        await api.delete(`tarefas/${id}`);
+        await api.delete(`tarefa/${id}`);
         setTarefas(tarefas.filter(tarefas => tarefas.id !== id));
-        
+        location.reload(); //atualizar a página
     }catch(error){
         alert(`Erro: ..Não foi possível excluir a tarefa ${titulo}: ${error}`);
     }
@@ -57,10 +71,10 @@ const alterar = async (id,titulo,index) => {
     }
     try{//captura os erros 
         //chamando o backend e passando os dados
-        await api.put(`tarefas/${id}`,{status: novoStatus});
+        await api.put(`tarefa/${id}`,{status: novoStatus});
         const tarefasAtualizadas = [...tarefas];
-        const indiceTarefas = tarefasAtualizadas.findIndex(tarefas => tarefa.id === id);
-        tarefasAtualizadas[indiceTarefas].status = novoStatus;
+        const indiceTarefas = tarefasAtualizadas.findIndex(tarefa => tarefa.id === id);
+        tarefasAtualizadas[indiceTarefas.idtarefas].status = novoStatus;
         setTarefas(tarefasAtualizadas);
         obterLista();
     }catch(error){
