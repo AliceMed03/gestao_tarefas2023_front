@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import { useState, useEffect } from "react";
-import { api } from "./config_axios";
+import { api } from "./config_axios.js";
 import ItemLista from "./ItemLista.jsx";  
 
 const ManutencaoTarefas = () => {
@@ -63,22 +63,22 @@ const excluir = async(id,titulo) => {
 }
 
 //alterar os registros
-const alterar = async (id,titulo,index) => {
+const alterar = async (id, titulo) => {
     const novoStatus = prompt(`Digite o novo status da tarefa ${titulo}`);
-    if (novoStatus == "") {
-        alert('Digite um status válido!')
+    if (novoStatus === "" || novoStatus === null) {
+        alert('Digite um status válido! (status em branco)');
         return;
     }
-    try{//captura os erros 
-        //chamando o backend e passando os dados
-        await api.put(`tarefa/${id}`,{status: novoStatus});
-        const tarefasAtualizadas = [...tarefas];
-        const indiceTarefas = tarefasAtualizadas.findIndex(tarefa => tarefa.id === id);
-        tarefasAtualizadas[indiceTarefas.idtarefas].status = novoStatus;
-        setTarefas(tarefasAtualizadas);
+    try {
+        // Chamando o backend e passando os dados
+        await api.put(`tarefa/${id}`, { status: novoStatus });
+
+        // Atualizando a lista de tarefas
         obterLista();
-    }catch(error){
-        alert(`Erro: ..Não foi possível alterar o status da tarefa ${titulo}: ${error}`);
+        // Recarregar a página para atualizar a lista
+        location.reload();
+    } catch (error) {
+        alert(`Erro: Não foi possível alterar a tarefa ${titulo}: ${error}`);
     }
 }
 
