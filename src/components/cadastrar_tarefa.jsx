@@ -13,8 +13,7 @@ const Cadastrar_tarefa = () => {
     const salvar = async (campos) => {  
         try {
                     const response = await api.post("tarefa", campos);
-                    setAviso(`Tarefa cadastrada com sucesso!"
-                    ${response.data.id}`);
+                    setAviso(`Tarefa cadastrada com sucesso!`);
                 } catch (error) {
                     setAviso("Erro ao cadastrar a tarefa!");
                 }
@@ -61,7 +60,7 @@ const Cadastrar_tarefa = () => {
                 <input type="reset" className="btn btn-danger mt-3 ms-3"
                 value="Limpar"/>
         </form>
-        <div className="alert"></div>
+        <div className="alert">{aviso}</div>
         </div>
     )
 }

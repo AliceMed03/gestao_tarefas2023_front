@@ -13,8 +13,7 @@ const Cadastrar_usuario = () => {
     const salvar = async (campos) => {  
         try {
                     const response = await api.post("usuario", campos);
-                    setAviso(`Usuário cadastrado com sucesso!"
-                    ${response.data.id}`);
+                    setAviso(`Usuário cadastrado com sucesso!`);
                 } catch (error) {
                     setAviso("Erro ao cadastrar o usuário!");
                 }
@@ -45,7 +44,7 @@ const Cadastrar_usuario = () => {
                 <input type="reset" className="btn btn-danger mt-3 ms-3"
                 value="Limpar"/>
         </form>
-        <div className="alert"></div>
+        <div className="alert">{aviso}</div>
         </div>
     )
 }
