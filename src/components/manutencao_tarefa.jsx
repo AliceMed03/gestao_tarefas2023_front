@@ -56,7 +56,6 @@ const excluir = async(id,titulo) => {
     try{
         await api.delete(`tarefa/${id}`);
         setTarefas(tarefas.filter(tarefas => tarefas.id !== id));
-        location.reload(); //atualizar a página
     }catch(error){
         alert(`Erro: ..Não foi possível excluir a tarefa ${titulo}: ${error}`);
     }
@@ -76,7 +75,6 @@ const alterar = async (id, titulo) => {
         // Atualizando a lista de tarefas
         obterLista();
         // Recarregar a página para atualizar a lista
-        location.reload();
     } catch (error) {
         alert(`Erro: Não foi possível alterar a tarefa ${titulo}: ${error}`);
     }
